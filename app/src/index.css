@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    --primary: 215 30% 22%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 215 25% 15%;
+
+    --muted: 210 15% 93%;
+    --muted-foreground: 215 10% 50%;
+
+    --accent: 174 42% 43%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 174 42% 43%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom tokens */
+    --person-a: 215 30% 22%;
+    --person-b: 174 42% 43%;
+    --merged: 200 35% 30%;
+    --timeline-line: 214 20% 82%;
+    --timeline-dot: 174 42% 43%;
+  }
+
+  .dark {
+    --background: 215 25% 8%;
+    --foreground: 210 20% 92%;
+    --card: 215 25% 12%;
+    --card-foreground: 210 20% 92%;
+    --popover: 215 25% 12%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 210 20% 92%;
+    --primary-foreground: 215 25% 8%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 174 42% 43%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 174 42% 43%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    --person-a: 210 20% 92%;
+    --person-b: 174 42% 55%;
+    --merged: 190 30% 50%;
+    --timeline-line: 217 20% 25%;
+    --timeline-dot: 174 42% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .timeline-line {
+    @apply w-px bg-border;
+  }
+
+  .timeline-dot {
+    @apply w-3 h-3 rounded-full border-2 border-background;
+    background-color: hsl(var(--timeline-dot));
+  }
+
+  .experience-card {
+    @apply rounded-lg border border-border bg-card p-5 shadow-sm transition-all duration-300;
+  }
+
+  .experience-card:hover {
+    @apply shadow-md;
+    border-color: hsl(var(--accent));
+  }
+
+  .person-a-accent {
+    color: hsl(var(--person-a));
+  }
+
+  .person-b-accent {
+    color: hsl(var(--person-b));
+  }
+
+  .merged-accent {
+    color: hsl(var(--merged));
+  }
+
+  .person-a-dot {
+    background-color: hsl(var(--person-a));
+  }
+
+  .person-b-dot {
+    background-color: hsl(var(--person-b));
+  }
+
+  .merged-dot {
+    background-color: hsl(var(--merged));
+  }
+}

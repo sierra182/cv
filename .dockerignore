@@ -1,0 +1,32 @@
+# Répertoires de build locaux à ignorer
+.venv/
+__pycache__/
+build/
+dist/
+node_modules/
+
+# Fichiers de contrôle non nécessaires
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# VCS (git)
+.git/
+.gitignore
+
+# Éditeurs / IDE
+.vscode/
+.idea/
+*.swp
+
+# Autres fichiers inutiles dans l'image
+.env
+.DS_Store
+Thumbs.db
+
+**/.env
+**/.venv
+
+*Dockerfile*
+node_modules
