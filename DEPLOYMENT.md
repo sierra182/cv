@@ -1,4 +1,8 @@
-# Déploiement sur Coolify
+# Build et service du site
+
+Le Dockerfile installe les dépendances avec `npm ci`, compile l'application avec
+`npm run build`, puis Nginx sert uniquement les fichiers générés dans `dist` sur
+le port `80`. Il n'y a aucune configuration de reverse proxy dans le conteneur.
 
 Utiliser une application reliée à ce dépôt Git avec ces réglages :
 
@@ -12,15 +16,10 @@ Utiliser une application reliée à ce dépôt Git avec ces réglages :
 | Port interne du domaine, si renseigné | `80` |
 | Commande de démarrage personnalisée | Laisser vide |
 
-Enregistrer les réglages, pousser les fichiers modifiés sur la branche suivie par
-Coolify, puis redéployer. Si un contrôle de santé est configuré dans Coolify,
-utiliser HTTP, le port `80`, le chemin `/` et le statut attendu `200`.
+Pousser les fichiers modifiés sur la branche suivie par Coolify, puis redéployer.
 
-Le build utilise `app/package-lock.json` avec `npm ci`, compile Vite, puis copie
-uniquement `app/dist` dans l'image Nginx finale. Le conteneur lance Nginx ; il
-n'utilise plus le serveur de développement Vite sur le port 8080.
-La configuration Nginx renvoie `index.html` pour les routes React, notamment
-`/design` et `/design/obsidienne`.
+Le seul réglage spécifique de Nginx permet de recharger les routes React, comme
+`/design/obsidienne`, en servant `index.html`.
 
 Pour vérifier localement depuis la racine du dépôt avec Docker disponible :
 
