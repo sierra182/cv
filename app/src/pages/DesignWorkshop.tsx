@@ -56,8 +56,29 @@ export default function DesignWorkshop() {
   );
 }
 
-function SocialLinks({ person }: { person: PersonProfile }) {
-  return <div className="concept-socials">{person.github && <a href={person.github} target="_blank" rel="noreferrer" aria-label={`GitHub de ${person.name}`}><Github size={17} /></a>}{person.linkedin && <a href={person.linkedin} target="_blank" rel="noreferrer" aria-label={`LinkedIn de ${person.name}`}><Linkedin size={17} /></a>}{person.email && <a href={`mailto:${person.email}`} aria-label={`Écrire à ${person.name}`}><Mail size={17} /></a>}</div>;
+function SocialLinks({ person, labelled = false }: { person: PersonProfile; labelled?: boolean }) {
+  return (
+    <div className={`concept-socials${labelled ? " social-links-labelled" : ""}`}>
+      {person.github && (
+        <a href={person.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub de ${person.name}`}>
+          <Github size={17} />
+          {labelled && <><span>GitHub</span><ArrowUpRight size={17} /></>}
+        </a>
+      )}
+      {person.linkedin && (
+        <a href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${person.name}`}>
+          <Linkedin size={17} />
+          {labelled && <><span>LinkedIn</span><ArrowUpRight size={17} /></>}
+        </a>
+      )}
+      {person.email && (
+        <a href={`mailto:${person.email}`} aria-label={`Écrire à ${person.name} : ${person.email}`}>
+          <Mail size={17} />
+          {labelled && <><span>{person.email}</span><ArrowUpRight size={17} /></>}
+        </a>
+      )}
+    </div>
+  );
 }
 
 function Portrait({ person, index }: { person: PersonProfile; index: number }) {
@@ -153,9 +174,27 @@ export function PortfolioPage({ concept = "obsidienne", preview = false }: { con
       <main id="accueil"><Hero concept={concept} /><div className="concept-marquee" aria-hidden="true"><span>DEUX PARCOURS</span><i>✳</i><span>UNE MÊME EXIGENCE</span><i>✳</i><span>DES PROJETS CONCRETS</span><i>✳</i><span>UNE VISION COMMUNE</span></div>
         <section id="duo" className="concept-section concept-container"><div className="concept-section-heading"><span className="concept-eyebrow">01 / LE DUO</span><h2>Des différences.<br /><em>Une force commune.</em></h2><p>Deux approches qui se complètent, de la compréhension du besoin à la fiabilité des systèmes.</p></div><div className="concept-profiles">{[personA, personB].map((person, index) => <article className="concept-profile" key={person.name}><div className="profile-top"><img src={person.avatar} alt={person.name} loading="lazy" /><span className="profile-number">/ 0{index + 1}</span><SocialLinks person={person} /></div><h3>{person.name}</h3><span className="profile-role">{person.title}</span><p>{person.about}</p><div className="profile-footer"><span>{index === 0 ? "Vision produit & architecture" : "Automatisation & fiabilité"}</span><ArrowUpRight size={17} /></div></article>)}</div></section>
         <section id="parcours" className="concept-section concept-container"><div className="concept-section-heading"><span className="concept-eyebrow">02 / LES TRAJECTOIRES</span><h2>Chacun sa route.<br /><em>Le même cap.</em></h2><p>Explorez les étapes de nos parcours. Chaque expérience a construit notre manière de travailler.</p></div><div className="concept-timelines"><ExperienceTimeline person={personA} experiences={personAExperiences} /><ExperienceTimeline person={personB} experiences={personBExperiences} /></div><div className="concept-convergence"><span className="convergence-mark">42<span>↗</span></span><div><span className="concept-eyebrow">LE POINT DE RENCONTRE · OCTOBRE 2023</span><h3>{convergeSection.title}</h3><p>{convergeSection.description}</p></div><ArrowDown size={25} /></div><div className="concept-convergence-details">{Object.entries(convergeSection.details || {}).map(([title, description]) => <div key={title}><h4>{title}</h4><p>{description}</p></div>)}</div></section>
-        <section id="projets" className="concept-section concept-container"><div className="concept-section-heading"><span className="concept-eyebrow">03 / LES RÉALISATIONS</span><h2>Construire ensemble.<br /><em>Livrer du concret.</em></h2><p>Du serveur HTTP à l’application métier : des projets partagés, de la conception au déploiement.</p></div><div className="concept-projects">{sharedExperiences.map((experience, index) => <Project experience={experience} index={index} />)}</div></section>
-        <section className="concept-method"><div className="concept-container"><span className="concept-eyebrow">04 / NOTRE FAÇON D’AVANCER</span><h2>La collaboration,<br /><em>éprouvée sur le terrain.</em></h2><div className="method-content"><span className="method-symbol" aria-hidden="true">↗↗</span><div><h3>{synergySection.title}</h3>{synergySection.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div></div></section>
-        <section id="contact" className="concept-contact concept-container"><span className="concept-eyebrow">LA PROCHAINE ÉTAPE</span><h2>Et si on construisait<br /><em>la suite ensemble ?</em></h2><div className="contact-links">{[personA, personB].map((person) => <a href={`mailto:${person.email}`} key={person.name}><span>Écrire à {person.name.split(" ")[0]}<small>{person.email}</small></span><ArrowUpRight size={24} /></a>)}</div></section>
+        <section id="projets" className="concept-section concept-container">
+          <div className="concept-section-heading projects-section-heading">
+            <span className="concept-eyebrow">03 / LES RÉALISATIONS</span>
+            <h2>Construire ensemble.<br /><em>Livrer du concret.</em></h2>
+            <p>Du serveur HTTP à l’application métier : des projets réalisés à deux, en combinant nos compétences de la conception au déploiement.</p>
+          </div>
+          <div className="concept-projects">{sharedExperiences.map((experience, index) => <Project experience={experience} index={index} />)}</div>
+        </section>
+        <section className="concept-method"><div className="concept-container"><span className="concept-eyebrow">04 / NOTRE FAÇON D’AVANCER</span><h2>La collaboration,<br /><em>éprouvée sur le terrain.</em></h2><div className="method-content"><div><h3>{synergySection.title}</h3>{synergySection.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div></div></section>
+        <section id="contact" className="concept-contact concept-container">
+          <span className="concept-eyebrow">LA PROCHAINE ÉTAPE</span>
+          <h2>Et si on construisait<br /><em>la suite ensemble ?</em></h2>
+          <div className="contact-links">
+            {[personA, personB].map((person) => (
+              <div className="contact-person" key={person.name}>
+                <h3>{person.name}</h3>
+                <SocialLinks person={person} labelled />
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
       <footer className="concept-footer concept-container"><span>Florian Vergé & Sébastien Vidot</span>{preview ? <Link to="/design" target="_top">Proposition {concepts.find((item) => item.id === concept)!.name} · Retour à l’atelier <ArrowUpRight size={13} /></Link> : <a href="#accueil">Revenir en haut <ArrowUpRight size={13} /></a>}</footer>
     </div>

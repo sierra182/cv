@@ -58,11 +58,9 @@ export const convergeSection: ConvergeSection = {
 export const synergySection: SynergySection = {
   title: "Une dynamique déjà éprouvée",
   paragraphs: [
-    "Après deux ans de collaboration sur des projets exigeants, nous avons développé une manière de travailler fluide et structurée, sans friction technique inutile.",
-    "Nos outils, nos workflows et nos standards de qualité sont naturellement alignés, ce qui permet d’avancer efficacement tout en conservant un haut niveau d’exigence.",
-    "Nos compétences se complètent sur les plans technique et organisationnel — du développement à l’infrastructure — tout en reposant sur une communication claire, une gestion constructive des désaccords et une répartition intelligente des responsabilités.",
-    "Cette dynamique favorise la remise en question constructive, l’identification rapide des points faibles et une amélioration continue de la qualité livrée.",
-    "Elle constitue un cadre solide, capable de s’adapter à différents contextes et environnements professionnels.",
+    "Deux ans de projets communs ont construit une collaboration fluide, avec des outils partagés et des standards de qualité alignés.",
+    "Du développement à l’infrastructure, nos compétences se complètent. Nous discutons nos choix techniques et répartissons clairement les responsabilités.",
+    "Cette méthode nous aide à identifier les points faibles, améliorer nos solutions et nous adapter à différents environnements.",
   ],
 };
 
